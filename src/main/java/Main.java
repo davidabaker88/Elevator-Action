@@ -7,7 +7,7 @@ public class Main extends JPanel{
     static boolean menuScreen=true;
     //still need to make this actually hold the instance after Baker pushes
     private static Main instance;
-    public static void main(String[] args) {
+    public static void main(String[] unicorns) {
         gameRunning = true;
         try {
             gameLoop();
