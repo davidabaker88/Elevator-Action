@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.LinkedList;
 
 /**
@@ -11,7 +13,7 @@ public class Character {
     public Character(){
         bullets = new LinkedList<>();
         hasHitBox = true;
-        texture = new AnimatedTexture();
+        texture = new AnimatedTexture("playerLeft");
     }
     protected void Crouch(){
 

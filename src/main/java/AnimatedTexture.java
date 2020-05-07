@@ -1,4 +1,7 @@
+package main.java;
+
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -6,11 +9,13 @@ import java.util.Hashtable;
  */
 public class AnimatedTexture {
     private int activeFrame;
-    Hashtable<String,Image>  spriteMap;
+    private String currentAnimationName;
 
-    public AnimatedTexture(){
-
+    public AnimatedTexture(String startAnimation){
+        activeFrame=0;
+        currentAnimationName=startAnimation;
     }
+
 
     //walkLeft :0,1,2
     //walkRight:0,1,2
