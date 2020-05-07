@@ -1,9 +1,13 @@
 package main.java;
 
-public class Main {
+import javax.swing.JPanel;
+
+public class Main extends JPanel{
     static boolean gameRunning;
+    static boolean menuScreen=true;
+    //still need to make this actually hold the instance after Baker pushes
+    private static Main instance;
     public static void main(String[] args) {
-	// write your code here
         gameRunning = true;
         try {
             gameLoop();
@@ -66,5 +70,9 @@ public class Main {
     private static void draw()
     {
 
+    }
+    
+    public static Main getInstance() {
+    	return instance;
     }
 }
