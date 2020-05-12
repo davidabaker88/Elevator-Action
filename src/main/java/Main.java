@@ -1,21 +1,18 @@
 package main.java;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
+import javax.swing.JPanel;
 
-public class Main  extends JPanel{
+public class Main extends JPanel{
     static boolean gameRunning;
-    public static void main(String[] args) {
-	// write your code here
-        JFrame frame = new JFrame("Ele-Baker");
-        Main game = new Main();
-        frame.add(game);
-        frame.setSize(700, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    static boolean menuScreen=true;
+    //still need to make this actually hold the instance after Baker pushes
+    private static Main instance;
+    public static void main(String[] unicorns) {
         gameRunning = true;
         try {
             game.gameLoop();
@@ -89,5 +86,9 @@ public class Main  extends JPanel{
         g2d.drawRect(50, 50, 30, 30);
 
         g2d.drawImage(ImageObserver);
+    }
+    
+    public static Main getInstance() {
+    	return instance;
     }
 }
