@@ -1,18 +1,30 @@
 package main.java;
 
-public class Main {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.ImageObserver;
+
+public class Main  extends JPanel{
     static boolean gameRunning;
     public static void main(String[] args) {
 	// write your code here
+        JFrame frame = new JFrame("Ele-Baker");
+        Main game = new Main();
+        frame.add(game);
+        frame.setSize(700, 700);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameRunning = true;
         try {
-            gameLoop();
+            game.gameLoop();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public static void gameLoop() throws InterruptedException {
+    public  void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
         final int TARGET_FPS = 60;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
@@ -58,13 +70,24 @@ public class Main {
         }
     }
 
-    private static void update(double delta)
+    private  void update(double delta)
     {
         // all time-related values must be multiplied by delta!
 
     }
-    private static void draw()
+    private void draw()
     {
+        repaint();
+    }
+    @Override
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.RED);
+        g2d.fillOval(0, 0, 30, 30);
+        g2d.drawOval(0, 50, 30, 30);
+        g2d.fillRect(50, 0, 30, 30);
+        g2d.drawRect(50, 50, 30, 30);
 
+        g2d.drawImage(ImageObserver);
     }
 }
