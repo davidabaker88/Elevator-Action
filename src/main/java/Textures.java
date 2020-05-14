@@ -13,14 +13,17 @@ import javax.swing.ImageIcon;
  */
 public final class Textures {
     private static Hashtable<String,ArrayList<Image>> textureMap;
+    private static Textures textures= new Textures();
     private Textures(){
+    	textureMap = new Hashtable<>();
+
         //set up all of the animations here
     	Hashtable<String, Integer> ntf=new Hashtable<>();//names to frames (string is animation name int is frame number
     	//ntf.put("<hashName> <fileName>",<number of frames>) given that hashName and fileName are different
     	//ntf.put("<hashName/fileName>",<number of frames>) given that hashName and fileName are the same
-    	ntf.put("playerWalkLeft player/walkLeft", 0);//put hashtable name then path (or if they are the same then just put the one thing)
-    	ntf.put("playerWalkRight player/walkRight",0);
-    	ntf.put("playerStand player/stand",0);
+    	ntf.put("playerWalkLeft player/walkLeft", 1);//put hashtable name then path (or if they are the same then just put the one thing)
+    	ntf.put("playerWalkRight player/walkRight",1);
+    	ntf.put("playerStand player/stand",1);
     	// . . .  . . .  //
     	
     	//go through each animation and add images
@@ -44,8 +47,13 @@ public final class Textures {
         		images.add(loadImage(fileName,ntf.get(name)));
         	}
         	//add imageList to texture map with proper hashName
-        	textureMap.put(hashName, images);
-        }
+			try {
+				textureMap.put(hashName, images);
+			}catch (Exception e){
+				System.out.println(e);
+			}
+
+		}
     }
     
     public static Image GetFrame(String animationName,int frame){

@@ -16,7 +16,9 @@ public class AnimatedTexture {
         currentAnimationName=startAnimation;
     }
 
-
+    public Image getImage(){
+        return Textures.GetFrame(currentAnimationName,activeFrame);
+    }
     //walkLeft :0,1,2
     //walkRight:0,1,2
     //Jump:0

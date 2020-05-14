@@ -12,10 +12,20 @@ public class Main extends JPanel{
     static boolean menuScreen=true;
     //still need to make this actually hold the instance after Baker pushes
     private static Main instance;
+    Player player = new Player();
+    Floor floor1 = new Floor(100,200);
     public static void main(String[] unicorns) {
+        instance = new Main();
+
+        JFrame frame = new JFrame("Ele-Baker");
+        Main game = new Main();
+        frame.add(game);
+        frame.setSize(700, 700);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
         gameRunning = true;
         try {
-            game.gameLoop();
+            instance.gameLoop();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -63,13 +73,18 @@ public class Main extends JPanel{
             // to this and then factor in the current time to give
             // us our final value to wait for
             // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
-            Thread.sleep( (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );
+            long sleepTime = System.nanoTime()-lastLoopTime - OPTIMAL_TIME/1000000;
+            if (sleepTime <0){
+                sleepTime = 0;
+            }
+            Thread.sleep( sleepTime );
         }
     }
 
     private  void update(double delta)
     {
         // all time-related values must be multiplied by delta!
+        player.Update(delta);
 
     }
     private void draw()
@@ -78,16 +93,18 @@ public class Main extends JPanel{
     }
     @Override
     public void paint(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.RED);
-        g2d.fillOval(0, 0, 30, 30);
-        g2d.drawOval(0, 50, 30, 30);
-        g2d.fillRect(50, 0, 30, 30);
-        g2d.drawRect(50, 50, 30, 30);
-
-        g2d.drawImage(ImageObserver);
+        super.paintComponent(g);
+        draw(g);
     }
-    
+
+    private void draw(Graphics g) {
+    //do drawing stuff
+        Graphics2D g2d=(Graphics2D) g;
+        player.Draw(g2d);
+        floor1.Draw(g2d);
+
+
+    }
     public static Main getInstance() {
     	return instance;
     }
