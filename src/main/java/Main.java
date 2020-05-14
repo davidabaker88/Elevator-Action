@@ -1,5 +1,10 @@
 package main.java;
 
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.ImageObserver;
 import javax.swing.JPanel;
 
 public class Main extends JPanel{
@@ -10,13 +15,13 @@ public class Main extends JPanel{
     public static void main(String[] unicorns) {
         gameRunning = true;
         try {
-            gameLoop();
+            game.gameLoop();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public static void gameLoop() throws InterruptedException {
+    public  void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
         final int TARGET_FPS = 60;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
@@ -62,14 +67,25 @@ public class Main extends JPanel{
         }
     }
 
-    private static void update(double delta)
+    private  void update(double delta)
     {
         // all time-related values must be multiplied by delta!
 
     }
-    private static void draw()
+    private void draw()
     {
+        repaint();
+    }
+    @Override
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.RED);
+        g2d.fillOval(0, 0, 30, 30);
+        g2d.drawOval(0, 50, 30, 30);
+        g2d.fillRect(50, 0, 30, 30);
+        g2d.drawRect(50, 50, 30, 30);
 
+        g2d.drawImage(ImageObserver);
     }
     
     public static Main getInstance() {
