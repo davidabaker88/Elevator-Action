@@ -57,7 +57,8 @@ public final class Textures {
 		}
     }
     
-    public static Image GetFrame(String animationName,int frame){
+    public static Image getFrame(String animationName,int frame){
+    	System.out.println("frame: "+frame);
         return textureMap.get(animationName).get(frame);
     }
     
@@ -72,6 +73,7 @@ public final class Textures {
      * @return image of sprite
      */
     private static Image loadImage(String name,int no) {
+    	System.out.println("Loading image: assets/sprites/"+name+"/"+no+".png");
     	return new ImageIcon("assets/sprites/"+name+"/"+no+".png").getImage();
     }
     

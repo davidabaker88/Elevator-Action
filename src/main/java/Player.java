@@ -14,9 +14,12 @@ public class Player extends Character{
         velocity = 0;
     }
 
-    public void Update(double delta){
-    	//update animation
-    	texture.nextFrame();
+    public void update(double delta){
+    	//update animation for each frame
+    	for (int i=0;i<Math.ceil(delta);i++) {
+    		texture.nextFrame();
+    	}
+    	
         //use the delta
         double gravity = 9.8 *delta;
         velocity+=gravity;
@@ -28,7 +31,7 @@ public class Player extends Character{
 
 
     }
-    private void Jump(){
+    private void jump(){
 
     }
 

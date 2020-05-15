@@ -20,14 +20,16 @@ public class AnimatedTexture {
 
     public Image getImage(){
     	System.out.println(currentAnimationName+": "+activeFrame);
-        return Textures.GetFrame(currentAnimationName,activeFrame);
+        return Textures.getFrame(currentAnimationName,activeFrame);
     }
     
     public void nextFrame() {
+    	
     	activeFrame++;
     	if (activeFrame>=maxFrames) {
     		activeFrame=0;//restart animation
     	}
+    	//System.out.println("next frame: "+activeFrame);
     }
     //walkLeft :0,1,2
     //walkRight:0,1,2

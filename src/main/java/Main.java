@@ -23,10 +23,12 @@ public class Main extends JPanel{
         JFrame frame = new JFrame("Ele-Baker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//For Baker this didn't make a difference but it wasn't the default for me so it must be system dependent. Therefore this line is necessary
         Main game = new Main();
-        frame.add(game);
-        frame.setSize(700, 700);
+        frame.setPreferredSize(new Dimension(700, 700));
+        frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.add(game);
+        game.setFocusable(true);
         gameRunning = true;
         try {
             instance.gameLoop();
@@ -43,7 +45,6 @@ public class Main extends JPanel{
         long lastSleepValue=1000/TARGET_FPS;//last sleep value in milliseconds
         int fps =0;
         double lastFpsTime=0;
-
         // keep looping round til the game ends
         while (gameRunning)
         {
@@ -72,6 +73,7 @@ public class Main extends JPanel{
             update(delta);
 
             // draw everyting
+            //repaint();
             draw();
 
             // we want each frame to take 10 milliseconds, to do this
@@ -103,16 +105,17 @@ public class Main extends JPanel{
     private  void update(double delta)
     {
         // all time-related values must be multiplied by delta!
-        player.Update(delta);
+        player.update(delta);
 
     }
     private void draw()
     {
         repaint();
     }
+    
     @Override
-    public void paint(Graphics g) {
-        super.paintComponent(g);
+    public void paintComponent(Graphics g) {
+    	System.out.println("painting");
         draw(g);
     }
 
