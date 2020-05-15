@@ -128,8 +128,10 @@ public class Main extends JPanel{
     	g.setColor(Color.WHITE);
     	g.fillRect(0, 0, getWidth(), getHeight());//paint background over previously drawn things
         Graphics2D g2d=(Graphics2D) g;
-        player.Draw(g2d);
         floor1.Draw(g2d);
+        //draw player last so that it shows up on top
+        player.draw(g2d);
+        
 
 
     }

@@ -1,13 +1,14 @@
 package main.java;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  * Created by dbaker on 5/14/2020.
  */
-public class Floor {
-    protected AnimatedTexture texture;
+public class Floor implements Serializable{
+    protected transient AnimatedTexture texture;
     protected Rectangle hitbox;
 
     public Floor(int x, int y){

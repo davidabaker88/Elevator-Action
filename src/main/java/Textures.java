@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  */
 public final class Textures {
     private static Hashtable<String,ArrayList<Image>> textureMap;
-    private static Textures textures= new Textures();
+    private static Textures textures = new Textures();
     private Textures(){
     	textureMap = new Hashtable<>();
 
@@ -25,6 +25,13 @@ public final class Textures {
     	ntf.put("playerWalkRight player/walkRight",4);
     	ntf.put("playerStand player/stand",1);
     	ntf.put("floor",1);
+    	ntf.put("bullet",1);
+    	ntf.put("doorClosed door/doorClosed",1);
+    	ntf.put("doorOpen door/doorOpen",1);
+    	ntf.put("elevator",1);
+    	ntf.put("escalator",1);
+    	ntf.put("light",1);
+    	ntf.put("default",1);
     	// . . .  . . .  //
     	
     	//go through each animation and add images

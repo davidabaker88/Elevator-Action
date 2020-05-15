@@ -10,7 +10,7 @@ import java.util.Hashtable;
 public class AnimatedTexture {
     private int activeFrame;
     private int maxFrames;
-    private double pace=10;//how many game frames to update animation 
+    private final double pace;//how many game frames to update animation 
     private double ticks=0;//how many game frames have passed (used for pacing)
     private String currentAnimationName;
 
@@ -18,6 +18,14 @@ public class AnimatedTexture {
         activeFrame=0;
         maxFrames=Textures.getMaxFrames(startAnimation);
         currentAnimationName=startAnimation;
+        pace=10;//default pace
+    }
+    
+    public AnimatedTexture(String startAnimation,int pace){
+        activeFrame=0;
+        maxFrames=Textures.getMaxFrames(startAnimation);
+        currentAnimationName=startAnimation;
+        this.pace=pace;
     }
 
     public Image getImage(){
