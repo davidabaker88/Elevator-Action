@@ -18,18 +18,23 @@ public class Main extends JPanel{
     private static Main instance;
     Player player = new Player();
     Floor floor1 = new Floor(100,200);
+    
     public static void main(String[] unicorns) {
         instance = new Main();
 
         JFrame frame = new JFrame("Ele-Baker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//For Baker this didn't make a difference but it wasn't the default for me so it must be system dependent. Therefore this line is necessary
         Main game = instance;
+        game.setDoubleBuffered(true);
+        game.setFocusable(true);
+        game.setDoubleBuffered(true);
+        Inputs.init();//initialize inputs and add them to the panel
         frame.setPreferredSize(new Dimension(700, 700));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.add(game);
         frame.setVisible(true);
-        game.setFocusable(true);
+        
         //game.setDoubleBuffered(true);
         gameRunning = true;
         try {
@@ -121,7 +126,7 @@ public class Main extends JPanel{
     public void draw(Graphics g) {
     //do drawing stuff
     	g.setColor(Color.WHITE);
-    	g.fillRect(0, 0, getWidth(), getHeight());
+    	g.fillRect(0, 0, getWidth(), getHeight());//paint background over previously drawn things
         Graphics2D g2d=(Graphics2D) g;
         player.Draw(g2d);
         floor1.Draw(g2d);
