@@ -21,8 +21,8 @@ public final class Textures {
     	Hashtable<String, Integer> ntf=new Hashtable<>();//names to frames (string is animation name int is frame number
     	//ntf.put("<hashName> <fileName>",<number of frames>) given that hashName and fileName are different
     	//ntf.put("<hashName/fileName>",<number of frames>) given that hashName and fileName are the same
-    	ntf.put("playerWalkLeft player/walkLeft", 2);//put hashtable name then path (or if they are the same then just put the one thing)
-    	ntf.put("playerWalkRight player/walkRight",2);
+    	ntf.put("playerWalkLeft player/walkLeft", 4);//put hashtable name then path (or if they are the same then just put the one thing)
+    	ntf.put("playerWalkRight player/walkRight",4);
     	ntf.put("playerStand player/stand",1);
     	ntf.put("floor",1);
     	// . . .  . . .  //
@@ -45,7 +45,7 @@ public final class Textures {
         	}
         	//load images
         	for (int i=0;i<ntf.get(name);i++) {
-        		images.add(loadImage(fileName,ntf.get(name)));
+        		images.add(loadImage(fileName,i+1));
         	}
         	//add imageList to texture map with proper hashName
 			try {
@@ -58,7 +58,7 @@ public final class Textures {
     }
     
     public static Image getFrame(String animationName,int frame){
-    	System.out.println("frame: "+frame);
+    	//System.out.println("frame: "+frame);
         return textureMap.get(animationName).get(frame);
     }
     

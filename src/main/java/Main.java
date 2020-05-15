@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 public class Main extends JPanel{
     static boolean gameRunning;
     static boolean menuScreen=true;
-    static double sleepP=.5;
+    private static final double sleepP=.5;
+    public static final int TARGET_FPS=60;
     //still need to make this actually hold the instance after Baker pushes
     private static Main instance;
     Player player = new Player();
@@ -22,13 +23,14 @@ public class Main extends JPanel{
 
         JFrame frame = new JFrame("Ele-Baker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//For Baker this didn't make a difference but it wasn't the default for me so it must be system dependent. Therefore this line is necessary
-        Main game = new Main();
+        Main game = instance;
         frame.setPreferredSize(new Dimension(700, 700));
         frame.pack();
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
         frame.add(game);
+        frame.setVisible(true);
         game.setFocusable(true);
+        //game.setDoubleBuffered(true);
         gameRunning = true;
         try {
             instance.gameLoop();
@@ -39,8 +41,6 @@ public class Main extends JPanel{
 
     public  void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
-        
-        final int TARGET_FPS = 60;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;//target nanoseconds/frame
         long lastSleepValue=1000/TARGET_FPS;//last sleep value in milliseconds
         int fps =0;
@@ -108,19 +108,20 @@ public class Main extends JPanel{
         player.update(delta);
 
     }
-    private void draw()
+    public void draw()
     {
         repaint();
     }
     
     @Override
     public void paintComponent(Graphics g) {
-    	System.out.println("painting");
         draw(g);
     }
 
-    private void draw(Graphics g) {
+    public void draw(Graphics g) {
     //do drawing stuff
+    	g.setColor(Color.WHITE);
+    	g.fillRect(0, 0, getWidth(), getHeight());
         Graphics2D g2d=(Graphics2D) g;
         player.Draw(g2d);
         floor1.Draw(g2d);
