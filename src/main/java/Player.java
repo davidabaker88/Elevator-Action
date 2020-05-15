@@ -15,6 +15,8 @@ public class Player extends Character{
     }
 
     public void Update(double delta){
+    	//update animation
+    	texture.nextFrame();
         //use the delta
         double gravity = 9.8 *delta;
         velocity+=gravity;

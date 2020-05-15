@@ -5,11 +5,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public class Main extends JPanel{
     static boolean gameRunning;
     static boolean menuScreen=true;
+    static double sleepP=.5;
     //still need to make this actually hold the instance after Baker pushes
     private static Main instance;
     Player player = new Player();
@@ -18,6 +21,7 @@ public class Main extends JPanel{
         instance = new Main();
 
         JFrame frame = new JFrame("Ele-Baker");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//For Baker this didn't make a difference but it wasn't the default for me so it must be system dependent. Therefore this line is necessary
         Main game = new Main();
         frame.add(game);
         frame.setSize(700, 700);
@@ -33,8 +37,10 @@ public class Main extends JPanel{
 
     public  void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
+        
         final int TARGET_FPS = 60;
-        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;//target nanoseconds/frame
+        long lastSleepValue=1000/TARGET_FPS;//last sleep value in milliseconds
         int fps =0;
         double lastFpsTime=0;
 
@@ -73,10 +79,23 @@ public class Main extends JPanel{
             // to this and then factor in the current time to give
             // us our final value to wait for
             // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
-            long sleepTime = System.nanoTime()-lastLoopTime - OPTIMAL_TIME/1000000;
+            long error=updateLength - OPTIMAL_TIME;//update Length and Optimal_Time both measured in nanoseconds
+            //debug output
+            //output info in ms
+            //System.out.println("updateLength: "+updateLength/1000000);
+            //System.out.println("OPTIMAL_TIME: "+OPTIMAL_TIME/1000000);
+            //System.out.println("Error: "+error/1000000);
+            //output info in ns
+            //System.out.println("updateLength: "+updateLength);
+            //System.out.println("OPTIMAL_TIME: "+OPTIMAL_TIME);
+            //System.out.println("Error: "+error);
+            long proportionalOutput = Math.round(error*sleepP/1000000);//multiply error by P value and convert to milliseconds
+            long sleepTime=lastSleepValue-proportionalOutput;//adjust sleep value accordingly
+            lastSleepValue=sleepTime;//update last sleep value
             if (sleepTime <0){
                 sleepTime = 0;
             }
+            //System.out.println("update");
             Thread.sleep( sleepTime );
         }
     }

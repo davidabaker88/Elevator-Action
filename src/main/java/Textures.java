@@ -3,7 +3,7 @@ package main.java;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
-
+import main.java.*;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,9 +21,10 @@ public final class Textures {
     	Hashtable<String, Integer> ntf=new Hashtable<>();//names to frames (string is animation name int is frame number
     	//ntf.put("<hashName> <fileName>",<number of frames>) given that hashName and fileName are different
     	//ntf.put("<hashName/fileName>",<number of frames>) given that hashName and fileName are the same
-    	ntf.put("playerWalkLeft player/walkLeft", 1);//put hashtable name then path (or if they are the same then just put the one thing)
-    	ntf.put("playerWalkRight player/walkRight",1);
+    	ntf.put("playerWalkLeft player/walkLeft", 2);//put hashtable name then path (or if they are the same then just put the one thing)
+    	ntf.put("playerWalkRight player/walkRight",2);
     	ntf.put("playerStand player/stand",1);
+    	ntf.put("floor",1);
     	// . . .  . . .  //
     	
     	//go through each animation and add images
@@ -58,6 +59,10 @@ public final class Textures {
     
     public static Image GetFrame(String animationName,int frame){
         return textureMap.get(animationName).get(frame);
+    }
+    
+    public static int getMaxFrames(String animationName) {
+    	return textureMap.get(animationName).size();
     }
     
     /**Loads an image from assets/sprites/<code>name</code>/<code>no</code>.png
