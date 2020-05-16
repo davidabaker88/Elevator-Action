@@ -21,6 +21,14 @@ public class Player extends Character{
     }
 
     public void update(double delta){
+    	//set texture according to movement (won't interrupt animation)
+    	if (velocityX==0) {
+    		setTexture("playerStand");
+    	} else if (velocityX>0) {
+    		setTexture("playerWalkRight");
+    	} else {
+    		setTexture("playerWalkLeft");
+    	}
     	//update animation for each frame
     	AnimatedTexture texture=getTexture();
     	for (int i=0;i<Math.ceil(delta);i++) {
