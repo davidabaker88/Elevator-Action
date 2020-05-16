@@ -40,7 +40,7 @@ public class Player extends Character{
         	dt+=interval;
         	movementY=velocityY*dt;
         	movementX=velocityX*dt;
-        	if (hitbox.getMaxY()+movementY>=Main.getInstance().getFloor().hitbox.y) {
+        	if (hitbox.getMaxY()+movementY>=Main.getInstance().getFloor().hitbox.y&&((hitbox.x+Math.floor(movementX)>=Main.getInstance().floor1.hitbox.x&&hitbox.x+Math.floor(movementX)<=Main.getInstance().floor1.hitbox.getMaxX())||(hitbox.getMaxX()+Math.ceil(movementX)<=Main.getInstance().floor1.hitbox.getMaxX()&&hitbox.getMaxX()+Math.ceil(movementX)>=Main.getInstance().floor1.hitbox.x))) {
         		//stop moving
         		movementY=Math.floor(movementY);//don't move this pixel down
         		velocityY=0;
