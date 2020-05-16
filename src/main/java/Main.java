@@ -138,4 +138,8 @@ public class Main extends JPanel{
     public static Main getInstance() {
     	return instance;
     }
+    
+    public Floor getFloor() {
+    	return floor1;
+    }
 }

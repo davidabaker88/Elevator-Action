@@ -25,7 +25,7 @@ public class Character extends Sprite {
     	super(startAnimation);
     	bullets = new LinkedList<>();
         hasHitBox = true;
-        hitbox = new Rectangle(100,100,20,20);
+        hitbox = new Rectangle(100,100,getTexture().getImage().getWidth(null),getTexture().getImage().getHeight(null));
     }
     
     public Character(String startAnimation,int startAnimationPace) {

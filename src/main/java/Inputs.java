@@ -33,15 +33,18 @@ public class Inputs {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_A:
 						//move left
+						observer.player.setXVelocity(-1);
 					break;
 					case KeyEvent.VK_W:
 						//elevator up (if on elevator) otherwise attempt to go through door
 					break;
 					case KeyEvent.VK_S:
 						//elevator down (if on elevator)
+						
 					break;
 					case KeyEvent.VK_D:
 						//move right
+						observer.player.setXVelocity(1);
 					break;
 					case KeyEvent.VK_SPACE:
 						//jump
@@ -57,6 +60,7 @@ public class Inputs {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_A:
 					//stop moving left
+					observer.player.setXVelocity(0);
 				break;
 				case KeyEvent.VK_W:
 					//stop elevator up (if on elevator) otherwise attempt to go through door
@@ -66,6 +70,7 @@ public class Inputs {
 				break;
 				case KeyEvent.VK_D:
 					//stop moving right
+					observer.player.setXVelocity(0);
 				break;
 				case KeyEvent.VK_SHIFT:
 					//stop crouching
