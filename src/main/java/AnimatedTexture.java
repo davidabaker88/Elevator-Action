@@ -1,13 +1,14 @@
 package main.java;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
  * Created by dbaker on 4/30/2020.
  */
-public class AnimatedTexture {
+public class AnimatedTexture implements Serializable{
     private int activeFrame;
     private int maxFrames;
     private final double pace;//how many game frames to update animation 

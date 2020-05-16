@@ -28,6 +28,8 @@ public final class Textures {
     	ntf.put("bullet",1);
     	ntf.put("doorClosed door/doorClosed",1);
     	ntf.put("doorOpen door/doorOpen",1);
+    	ntf.put("doorClosedRed door/doorClosedRed",1);
+    	ntf.put("doorOpenRed door/doorOpenRed",1);
     	ntf.put("elevator",1);
     	ntf.put("escalator",1);
     	ntf.put("light",1);

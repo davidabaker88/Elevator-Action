@@ -1,5 +1,7 @@
 package main.java;
 
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,11 +19,7 @@ import java.util.ArrayList;
 public class GameLevel implements Serializable{
 	//make sure that all game objects are serializable and non-serializable objects that are instance or class properties are marked as transient
 	//also note that static fields are always considered transient
-	private ArrayList<Floor> floors;
-	private ArrayList<Door> doors;
-	private transient ArrayList<Enemy> enemies;
-	private ArrayList<Escalator> escalators;
-	private ArrayList<Elevator> elevators;
+	private ArrayList<Sprite> sprites;
 	private int no;
 	
 	/**Instantiate an empty game level (for editing only - use load function to load a level)
@@ -29,9 +27,8 @@ public class GameLevel implements Serializable{
 	 * @param no
 	 */
 	public GameLevel(int no) {
-		floors=new ArrayList<>();
-		doors=new ArrayList<>();
-		enemies=new ArrayList<>();
+		sprites=new ArrayList<>();
+		this.no=no;
 	}
 	
 	
@@ -53,6 +50,12 @@ public class GameLevel implements Serializable{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void draw(Graphics2D g2d) {
+		for (Sprite s:sprites) {
+			s.draw(g2d);
 		}
 	}
 	
@@ -80,6 +83,25 @@ public class GameLevel implements Serializable{
 			e.printStackTrace();
 		}
 		return loadedLevel;
+	}
+	
+	public ArrayList<Sprite> getSprites(){
+		return sprites;
+	}
+	
+	public Sprite getSpriteAt(Point p) {
+		Sprite returnSprite=null;
+		for (Sprite s:sprites) {
+			if (s.getHitBox().contains(p)) {
+				returnSprite=s;
+				break;
+			}
+		}
+		return returnSprite;
+	}
+	
+	public int getNo() {
+		return no;
 	}
 	
 	

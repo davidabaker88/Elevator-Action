@@ -7,17 +7,16 @@ import java.util.LinkedList;
 /**
  * Created by dbaker on 5/14/2020.
  */
-public class Floor implements Serializable{
-    protected transient AnimatedTexture texture;
-    protected Rectangle hitbox;
+public class Floor extends Sprite{
+    
 
     public Floor(int x, int y){
-        texture = new AnimatedTexture("floor");
-        hitbox = new Rectangle(x,y,20,20);
+        super("floor");
+        hitbox = new Rectangle(x,y,getTexture().getImage().getWidth(null),getTexture().getImage().getHeight(null));
     }
     
-    public void Draw(Graphics2D g2d){
+    public void draw(Graphics2D g2d){
         //g2d.drawImage(Image, xpos, ypos, );
-        g2d.drawImage(texture.getImage(),hitbox.x,hitbox.y,Main.getInstance());
+        g2d.drawImage(getTexture().getImage(),hitbox.x,hitbox.y,null);//Main.getInstance());
     }
 }
