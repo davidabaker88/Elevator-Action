@@ -35,7 +35,13 @@ public class Player extends Character{
         double movementY=0;
         double movementX=0;
         double dt=0;
-        double interval=.001/velocityY;
+        double interval=.001;
+        if (velocityY!=0&&Math.abs(velocityY)>Math.abs(velocityX)) {
+        	interval/=velocityY;
+    	} else if (velocityX!=0) {
+    		interval/=velocityY;
+    	}
+        interval=Math.abs(interval);
         while (dt<=delta) {
         	dt+=interval;
         	movementY=velocityY*dt;
