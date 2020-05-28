@@ -14,10 +14,10 @@ public class Main extends JPanel{
     static boolean menuScreen=true;
     private static final double sleepP=.5;
     public static final int TARGET_FPS=60;
-    //still need to make this actually hold the instance after Baker pushes
     private static Main instance;
     Player player = new Player();
-    Floor floor1 = new Floor(100,200);
+    GameLevel level=GameLevel.load(0);
+    Viewport viewport;
     
     public static void main(String[] unicorns) {
         instance = new Main();
@@ -50,6 +50,8 @@ public class Main extends JPanel{
         long lastSleepValue=1000/TARGET_FPS;//last sleep value in milliseconds
         int fps =0;
         double lastFpsTime=0;
+        viewport=new Viewport(this);
+        level.setViewport(viewport);
         // keep looping round til the game ends
         while (gameRunning)
         {
@@ -75,7 +77,9 @@ public class Main extends JPanel{
             }
         */
             // update the game logic
+            viewport.update();
             update(delta);
+            viewport.setPos(viewport.getArea().x, player.getHitBox().y);
 
             // draw everyting
             //repaint();
@@ -128,7 +132,10 @@ public class Main extends JPanel{
     	g.setColor(Color.WHITE);
     	g.fillRect(0, 0, getWidth(), getHeight());//paint background over previously drawn things
         Graphics2D g2d=(Graphics2D) g;
-        floor1.draw(g2d);
+        //draw level sprites
+        for (Sprite s:level.getScreenSprites()) {
+        	s.draw(g2d);
+        }
         //draw player last so that it shows up on top
         player.draw(g2d);
         
@@ -137,9 +144,5 @@ public class Main extends JPanel{
     }
     public static Main getInstance() {
     	return instance;
-    }
-    
-    public Floor getFloor() {
-    	return floor1;
     }
 }

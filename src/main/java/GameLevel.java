@@ -17,10 +17,17 @@ import java.util.ArrayList;
  * Created by dbaker on 4/30/2020.
  */
 public class GameLevel implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8804240416743722062l;
+	
 	//make sure that all game objects are serializable and non-serializable objects that are instance or class properties are marked as transient
 	//also note that static fields are always considered transient
 	private ArrayList<Sprite> sprites;
 	private int no;
+	private transient Viewport viewport;
 	
 	/**Instantiate an empty game level (for editing only - use load function to load a level)
 	 * 
@@ -29,6 +36,10 @@ public class GameLevel implements Serializable{
 	public GameLevel(int no) {
 		sprites=new ArrayList<>();
 		this.no=no;
+	}
+	
+	public void setViewport(Viewport v) {
+		viewport=v;
 	}
 	
 	
@@ -102,6 +113,16 @@ public class GameLevel implements Serializable{
 	
 	public int getNo() {
 		return no;
+	}
+	
+	public ArrayList<Sprite> getScreenSprites(){
+		ArrayList<Sprite> screenSprites=new ArrayList<>();
+		for (Sprite s:sprites) {
+			if (viewport.getArea().intersects(s.getHitBox())) {
+				screenSprites.add(s);
+			}
+		}
+		return screenSprites;
 	}
 	
 	
