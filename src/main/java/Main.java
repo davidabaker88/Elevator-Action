@@ -79,7 +79,7 @@ public class Main extends JPanel{
             // update the game logic
             viewport.update();
             update(delta);
-            viewport.setPos(viewport.getArea().x, player.getHitBox().y);
+            viewport.setPos(viewport.getCenter().x, player.getHitBox().y);
 
             // draw everyting
             //repaint();
@@ -133,11 +133,9 @@ public class Main extends JPanel{
     	g.fillRect(0, 0, getWidth(), getHeight());//paint background over previously drawn things
         Graphics2D g2d=(Graphics2D) g;
         //draw level sprites
-        for (Sprite s:level.getScreenSprites()) {
-        	s.draw(g2d);
-        }
+        level.draw(g2d, viewport);
         //draw player last so that it shows up on top
-        player.draw(g2d);
+        player.draw(g2d,viewport);
         
 
 

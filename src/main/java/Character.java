@@ -11,7 +11,6 @@ public class Character extends Sprite {
 	
     protected boolean hasHitBox;
     protected LinkedList<Bullet> bullets;
-    protected Rectangle hitbox;
     
     
     

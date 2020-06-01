@@ -64,9 +64,9 @@ public class GameLevel implements Serializable{
 		}
 	}
 	
-	public void draw(Graphics2D g2d) {
-		for (Sprite s:sprites) {
-			s.draw(g2d);
+	public void draw(Graphics2D g2d,Viewport vp) {
+		for (Sprite s:getScreenSprites()) {
+			s.draw(g2d,vp);
 		}
 	}
 	

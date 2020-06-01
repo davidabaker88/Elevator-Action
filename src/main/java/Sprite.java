@@ -2,6 +2,7 @@ package main.java;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -67,7 +68,7 @@ public class Sprite implements Serializable{
    	currentAnimation=textureName;
    }
    
-   public void draw(Graphics2D g) {
+   public void draw(Graphics2D g,Viewport vp) {
 	   //override this method
    }
    
@@ -90,5 +91,9 @@ public class Sprite implements Serializable{
    public void setPos(int x,int y) {
 	   hitbox.x=x;
 	   hitbox.y=y;
+   }
+   
+   public Point getScreenPos(Viewport vp) {
+	   return vp.getScreenPos(hitbox.x, hitbox.y);
    }
 }

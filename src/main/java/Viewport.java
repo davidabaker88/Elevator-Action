@@ -37,4 +37,16 @@ public class Viewport {
 	public Rectangle getArea() {
 		return new Rectangle(x,y,width,height);
 	}
+	
+	public Point getCenter() {
+		return new Point(x+width/2,y+height/2);
+	}
+	
+	public Point getScreenPos(int x,int y) {
+		return new Point(x-this.x,y+this.y);//since y is inverted add instead of subtract
+	}
+	
+	public Point getScreenPos(Point p) {
+		return getScreenPos(p.x,p.y);
+	}
 }

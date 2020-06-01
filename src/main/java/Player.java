@@ -36,7 +36,7 @@ public class Player extends Character{
     	}
     	
         //use the delta
-        double gravity = 9.8 *delta/Main.TARGET_FPS;//frames/(frames/second)=seconds therefore using this formula the player should accelerate at 9.8 m/s/s
+        double gravity = /*9.8*/2.45 *delta/Main.TARGET_FPS;//frames/(frames/second)=seconds therefore using this formula the player should accelerate at 9.8 m/s/s
         velocityY+=gravity;
 
         //check for collision of ground
